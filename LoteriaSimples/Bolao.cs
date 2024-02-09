@@ -6,6 +6,5 @@
         public string Nome { get; set; } = default!;
         public List<Pessoa> Pessoas { get; set; } = default!;
         public List<Aposta> Apostas { get; set; } = default!;
-
     }
 }

@@ -9,6 +9,7 @@
         private readonly int nroMaximo;
 
         public string Resultado => string.Join(SEPARADOR_RESULTADO, _numeros.OrderBy(x => x).ToArray());
+        public int[] NumerosSorteados => _numeros.ToArray();
 
         public Aposta(int id, int qtdNumeros, int nroMaximo)
         {
@@ -17,7 +18,7 @@
             this.nroMaximo = nroMaximo;
         }
 
-        public Aposta Gerar()
+        public Aposta Gerar(int[] numerosSorteados)
         {
             var rnd = new Random();
 
@@ -25,10 +26,8 @@
             {
                 var numero = rnd.Next(1, nroMaximo);
 
-                if (_numeros.Any(num => num == numero))
-                    continue;
-
-                _numeros.Add(numero);
+                if (!numerosSorteados.Contains(numero) && !_numeros.Any(num => num == numero))
+                    _numeros.Add(numero);
             }
 
             return this;
